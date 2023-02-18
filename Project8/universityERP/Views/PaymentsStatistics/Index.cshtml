@@ -1,0 +1,117 @@
+﻿@model IEnumerable<universityERP.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Accounter.cshtml";
+}
+
+<h2>Statistics </h2>
+
+<br />
+
+<div class="row" style="display:flex;justify-content:space-around">
+
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="numbers">
+                            <p class="text-sm mb-0 text-capitalize font-weight-bold" style="text-align:center"> done payments</p>
+                            <h4 class="font-weight-bolder mb-0" style="text-align:center ">
+                                @Model.Count(x => x.paymentId != 0)
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                            <i class="fa-solid fa-sack-dollar" text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @{
+        universityERP.Models.universityERPEntities db = new universityERP.Models.universityERPEntities();
+        var DocSalary = db.Doctors.Sum(x => x.doctorSalary);
+        int doc = Convert.ToInt32(DocSalary);
+        var studentpay = Model.Sum(x => x.payment1);
+        int std = Convert.ToInt32(studentpay);
+
+        int sub = std - doc;
+    }
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="numbers">
+                            <p class="text-sm mb-0 text-capitalize font-weight-bold" style="text-align:center"> Net Income</p>
+                            <h4 class="font-weight-bolder mb-0" style="text-align:center ">
+                                @sub JD
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                            <i class="fa-solid fa-sack-dollar" text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="numbers">
+                            <p class="text-sm mb-0 text-capitalize font-weight-bold" style="text-align:center"> Revenue</p>
+                            <h4 class="font-weight-bolder mb-0" style="text-align:center ">
+                                @std JD
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                            <i class="fa-solid fa-sack-dollar" text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="numbers">
+                            <p class="text-sm mb-0 text-capitalize font-weight-bold" style="text-align:center"> Expenses</p>
+                            <h4 class="font-weight-bolder mb-0" style="text-align:center ">
+                                @doc JD
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="col-4 text-end">
+                        <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                            <i class="fa-solid fa-sack-dollar" text-lg opacity-10" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<div style="display:flex;justify-content:space-around">
+    <img src="@Url.Action("CreatePie")" alt="Pie Chart using MVC" title="The Average Of Doctors Salaries In Each Facility" />
+    <img src="@Url.Action("CreateBar")" alt="Bar Chart using MVC" title="The Average Of Student Payment In Each Facility" />
+
+</div>

@@ -45,6 +45,7 @@ warning 6002: The table/view 'universityERP.dbo.AspNetUserLogins' does not have 
     </Key>
     <Property Name="UserId" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="userEmail" Type="varchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="AspNetUsers">
     <Key>
@@ -110,6 +111,7 @@ warning 6002: The table/view 'universityERP.dbo.AspNetUserLogins' does not have 
     <Property Name="paymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="studentId" Type="int" />
     <Property Name="payment" Type="int" />
+    <Property Name="totalFees" Type="int" />
   </EntityType>
   <EntityType Name="studentCourses">
     <Key>

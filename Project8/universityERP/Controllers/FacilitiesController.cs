@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,6 +11,8 @@ using universityERP.Models;
 
 namespace universityERP.Controllers
 {
+
+[Authorize(Roles="Admin")]
     public class FacilitiesController : Controller
     {
         private universityERPEntities db = new universityERPEntities();
@@ -46,10 +49,16 @@ namespace universityERP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "facilityId,facilityName,facilityDescription,facilityImage")] Facility facility)
+        public ActionResult Create([Bind(Include = "facilityId,facilityName,facilityDescription,facilityImage")] Facility facility, HttpPostedFileBase facilityImage)
         {
+
+
             if (ModelState.IsValid)
             {
+                string path = "../images/" + facilityImage.FileName;
+                facilityImage.SaveAs(Server.MapPath(path));
+                facility.facilityImage = facilityImage.FileName;
+
                 db.Facilities.Add(facility);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -78,16 +87,35 @@ namespace universityERP.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "facilityId,facilityName,facilityDescription,facilityImage")] Facility facility)
+        public ActionResult Edit(int? id, [Bind(Include = "facilityId,facilityName,facilityDescription,facilityImage")] Facility facility, HttpPostedFileBase facilityImage)
         {
+
             if (ModelState.IsValid)
             {
+                var existingModel = db.Facilities.AsNoTracking().FirstOrDefault(x => x.facilityId == id);
+
+
+                if (facilityImage != null)
+                {
+
+                    string pathpic = Path.GetFileName(facilityImage.FileName);
+                    facilityImage.SaveAs(Path.Combine(Server.MapPath("~/images/"), facilityImage.FileName));
+                    facility.facilityImage = pathpic;
+
+                }
+                else
+                {
+                    facility.facilityImage = existingModel.facilityImage;
+                }
+
+
                 db.Entry(facility).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(facility);
         }
+
 
         // GET: Facilities/Delete/5
         public ActionResult Delete(int? id)

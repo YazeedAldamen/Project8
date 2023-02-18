@@ -2,44 +2,127 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Courses</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.courseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.courseHours)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Major.majorName)
-        </th>
-        <th></th>
-    </tr>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 ">
+                <div class="row" style="margin-left:20px ; margin-top:15px">
+                    <div class="card-header pb-0 col-md-4">
+                        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
+                    </div>
+                    <div class="col-md-8">
+                        @using (Html.BeginForm())
+                        {
+                            <input id="Cname" name="first" type="radio" value="Cname" /><span>Course Name &nbsp; &nbsp;</span>
+                            <input id="Mname" name="first" type="radio" value="Mname" /><span>Major Name &nbsp; &nbsp;</span>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.courseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.courseHours)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Major.majorName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.courseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.courseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.courseId })
-        </td>
-    </tr>
-}
 
-</table>
+                            <input style="border-radius:5px; border:1px solid black; height:40px" id="Search" name="Search" type="text" value="" placeholder="Type Here..." /><span>&nbsp;&nbsp;</span>
+                            <input type="submit" class="btn btn-outline-dark" id="name" name="name" value="Search" />
+                        }
+
+                    </div>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+
+
+
+
+                        <table class="table align-items-center mb-0">
+
+
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Course Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Course Hours</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Major Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Doctor Name</th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.courseName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.courseHours)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.Major.majorName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.Doctor.doctorName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+
+
+
+                                        <td class="align-middle text-center">
+                                            @Html.ActionLink("Details", "Details", new { id = item.courseId }, new { @class = "btn btn-info" })
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

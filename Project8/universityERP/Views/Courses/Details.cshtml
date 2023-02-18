@@ -2,41 +2,76 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Cours</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.courseName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.courseName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.courseHours)
-        </dt>
+<main class="main-content  mt-0">
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-6 col-md-6 d-flex flex-column mx-auto">
+                        <div class="card card-plain mt-8" style="margin-top: 0px !important">
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-gradient">Details</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.courseHours)
-        </dd>
+                            </div>
+                            <!-- Form start -->
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="card-body">
+                                    <form role="form">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Major.majorName)
-        </dt>
+                                        <div class="mb-3">
+                                            <label>Course Name</label> &emsp;&emsp;   @Html.DisplayFor(model => model.courseName)
 
-        <dd>
-            @Html.DisplayFor(model => model.Major.majorName)
-        </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.courseId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Course Hours</label> &emsp;&emsp;    @Html.DisplayFor(model => model.courseHours)
+
+                                        </div>
+
+
+
+
+                                        <div class="mb-3">
+                                            <label>Major</label> &emsp;&emsp;  @Html.DisplayFor(model => model.Major.majorName)
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label>Doctor</label> &emsp;&emsp;  @Html.DisplayFor(model => model.Doctor.doctorName)
+                                        </div>
+
+                                        <br />
+                                        <div class="text-center">
+                                            <a href="~/Courses/Index" class="btn bg-gradient-dark w-100">
+                                                Back to List
+                                            </a>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+
+
+

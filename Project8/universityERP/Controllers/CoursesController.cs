@@ -11,16 +11,31 @@ using universityERP.Models;
 
 namespace universityERP.Controllers
 {
+[Authorize]
     public class CoursesController : Controller
     {
         private universityERPEntities db = new universityERPEntities();
+        [Authorize(Roles = "Admin")]
 
-        // GET: Courses
-        public ActionResult Index()
+        public ActionResult Index(string Search, string first)
         {
-            var courses = db.Courses.Include(c => c.Major);
-            return View(courses.ToList());
+            var courses = db.Courses.Include(c => c.Doctor).Include(c => c.Major).ToList();
+            if (first == "Cname") { courses = db.Courses.Where(x => x.courseName.Contains(Search)).ToList(); }
+            else if (first == "Mname") { courses = db.Courses.Where(x => x.Major.majorName.Contains(Search)).ToList(); }
+
+
+            return View(courses);
+
+
+
         }
+        // GET: Courses
+        //public ActionResult Index()
+        //{
+        //    var courses = db.Courses.Include(c => c.Major);
+        //    return View(courses.ToList());
+        //}
+        [Authorize]
         public ActionResult Index2()
         {
             var user = User.Identity.GetUserName().ToString();
@@ -30,6 +45,8 @@ namespace universityERP.Controllers
             return View(courses.ToList());
         }
         // GET: Courses/Details/5
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,17 +60,22 @@ namespace universityERP.Controllers
             }
             return View(cours);
         }
+        [Authorize(Roles = "Admin")]
 
         // GET: Courses/Create
         public ActionResult Create()
         {
             ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName");
+            ViewBag.doctorId = new SelectList(db.Doctors, "doctorId", "doctorName", "doctorId");
+
             return View();
         }
 
         // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "courseId,courseName,courseHours,majorId")] Cours cours)
@@ -66,8 +88,11 @@ namespace universityERP.Controllers
             }
 
             ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", cours.majorId);
+            ViewBag.doctorId = new SelectList(db.Doctors, "doctorId", "doctorName", cours.doctorId);
+
             return View(cours);
         }
+        [Authorize(Roles = "Admin")]
 
         // GET: Courses/Edit/5
         public ActionResult Edit(int? id)
@@ -82,12 +107,15 @@ namespace universityERP.Controllers
                 return HttpNotFound();
             }
             ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", cours.majorId);
+            ViewBag.doctorId = new SelectList(db.Doctors, "doctorId", "doctorName", cours.doctorId);
+
             return View(cours);
         }
 
         // POST: Courses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+[Authorize(Roles ="Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "courseId,courseName,courseHours,majorId")] Cours cours)
@@ -99,10 +127,14 @@ namespace universityERP.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", cours.majorId);
+            ViewBag.doctorId = new SelectList(db.Doctors, "doctorId", "doctorName", cours.doctorId);
+
             return View(cours);
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles = "Admin")]
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,6 +150,8 @@ namespace universityERP.Controllers
         }
 
         // POST: Courses/Delete/5
+        [Authorize(Roles = "Admin")]
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -127,6 +161,8 @@ namespace universityERP.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [Authorize]
         public ActionResult Add(int? id)
         {
 
@@ -141,6 +177,8 @@ namespace universityERP.Controllers
             }
             return View(cours);
         }
+
+        [Authorize]
 
         [HttpPost, ActionName("Add")]
         [ValidateAntiForgeryToken]

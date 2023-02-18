@@ -184,13 +184,17 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccounterController.cs" />
     <Compile Include="Controllers\CollegeController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\DocSalaryController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MajorsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\onettwothreeController.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Controllers\PaymentsStatisticsController.cs" />
+    <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Controllers\studentCoursController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,6 +211,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cours.cs">
@@ -266,6 +273,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\Facilites\art.jfif" />
+    <Content Include="images\Facilites\business.jfif" />
+    <Content Include="images\Facilites\engineering.jfif" />
+    <Content Include="images\Facilites\it.png" />
+    <Content Include="images\Facilites\medicene.jfif" />
+    <Content Include="images\Facilites\science.jfif" />
     <Content Include="images\Facilites\spiderman.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1180,16 +1193,21 @@
     <Content Include="Views\Shared\_LayoutMajors.cshtml" />
     <Content Include="Views\Majors\Index2.cshtml" />
     <Content Include="Views\Shared\_LayoutSign.cshtml" />
-    <Content Include="Views\onettwothree\Create.cshtml" />
-    <Content Include="Views\onettwothree\Delete.cshtml" />
-    <Content Include="Views\onettwothree\Details.cshtml" />
-    <Content Include="Views\onettwothree\Edit.cshtml" />
-    <Content Include="Views\onettwothree\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutProfile.cshtml" />
     <Content Include="Views\Courses\Index2.cshtml" />
     <Content Include="Views\Courses\Add.cshtml" />
     <Content Include="Views\studentCours\Index2.cshtml" />
     <Content Include="Views\Students\ProfileDetails.cshtml" />
+    <Content Include="Views\Shared\_Accounter.cshtml" />
+    <Content Include="Views\Accounter\Edit.cshtml" />
+    <Content Include="Views\Accounter\Index.cshtml" />
+    <Content Include="Views\DocSalary\Edit.cshtml" />
+    <Content Include="Views\DocSalary\Index.cshtml" />
+    <Content Include="Views\Payments\Index.cshtml" />
+    <Content Include="Views\PaymentsStatistics\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Students\Accepted.cshtml" />
+    <Content Include="Views\Statistics\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

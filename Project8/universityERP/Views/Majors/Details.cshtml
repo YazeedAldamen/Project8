@@ -2,65 +2,65 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Details</h2>
+<main class="main-content  mt-0">
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-6 col-md-6 d-flex flex-column mx-auto">
+                        <div class="card card-plain mt-8" style="margin-top:20px !important">
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-gradient">Details</h3>
 
-<div>
-    <h4>Major</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.majorName)
-        </dt>
+                            </div>
+                            <!-- Form start -->
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="card-body">
+                                    <form role="form">
 
-        <dd>
-            @Html.DisplayFor(model => model.majorName)
-        </dd>
+                                        <div class="mb-3">
+                                            <label>Major Name</label> &emsp;&emsp;  @Html.DisplayFor(model => model.majorName)
+                                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.majorDescription)
-        </dt>
+                                        <div class="mb-3">
+                                            <label>Major Description</label> &emsp;&emsp;  @Html.DisplayFor(model => model.majorDescription)
+                                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.majorDescription)
-        </dd>
+                                        <div class="mb-3">
+                                            <label>Major Image</label> &emsp;&emsp;   <img src="~/images/@Html.DisplayFor(model => model.majorImage) " height="50px" width="60px" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Hours</label> &emsp;&emsp;   @Html.DisplayFor(model => model.numberOfHours)
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Hours Price</label> &emsp;&emsp;    @Html.DisplayFor(model => model.majorHourPrice)
+                                        </div>
+                                        <div class="mb-3">
+                                            <label>Faculity Name</label> &emsp;&emsp;    @Html.DisplayFor(model => model.Facility.facilityName)
+                                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.majorImage)
-        </dt>
+                                        <br />
+                                        <div class="text-center">
+                                            <a href="~/Majors/Index" class="btn bg-gradient-dark w-100">
+                                                Back to List
+                                            </a>
 
-        <dd>
-            @Html.DisplayFor(model => model.majorImage)
-        </dd>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.numberOfHours)
-        </dt>
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.numberOfHours)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.majorHourPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.majorHourPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Facility.facilityName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Facility.facilityName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.majorId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

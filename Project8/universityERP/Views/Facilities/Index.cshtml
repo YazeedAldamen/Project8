@@ -2,44 +2,76 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.facilityName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.facilityDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.facilityImage)
-        </th>
-        <th></th>
-    </tr>
+<h2>Faculties</h2>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>
+                        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
+                    </h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.facilityName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.facilityDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.facilityImage)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.facilityId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.facilityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.facilityId })
-        </td>
-    </tr>
-}
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Image</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Major</th>
 
-</table>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10 ps-2">Description</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+
+                                                    <img name="facilityImage" id="facilityImage" src="~/images/@Html.DisplayFor(modelItem => item.facilityImage)" height="50px" width="60px" />
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm"> @Html.DisplayFor(modelItem => item.facilityName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.facilityDescription)
+
+                                        </td>
+
+
+
+                                        <td class="align-middle text-center">
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.facilityId }, new { @class = "btn btn-secondary glyphicon glyphicon-pencil" }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.facilityId }, new { @class = "btn btn-info" })
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

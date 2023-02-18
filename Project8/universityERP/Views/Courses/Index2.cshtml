@@ -20,15 +20,17 @@
                 <table class="table">
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.courseName)
+                            Course Name
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.courseHours)
+                            Course Hours
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Major.majorName)
+                            Major Name
                         </th>
-                        <th></th>
+                        <th>
+                            Course Doctor
+                        </th>
                     </tr>
 
                     @foreach (var item in Model)
@@ -43,12 +45,14 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Major.majorName)
                             </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Doctor.doctorName)
+                            </td>
 
                             @{
 
                                 universityERP.Models.universityERPEntities db = new universityERP.Models.universityERPEntities();
-                                //universityERP.Models.AspNetUser netUser = new universityERP.Models.AspNetUser();
-                                //var user = netUser.Email;
+                                
                                 var user = User.Identity.Name;
 
 
@@ -89,8 +93,8 @@
                                 else if (add == false)
                                 {
                                     <td>
-                                        <a class="btn btn-danger launch" data-toggle="modal" data-target="#staticBackdrop">
-                                            Add
+                                        <a class="btn btn-secondary launch" data-toggle="modal" data-target="#staticBackdrop">
+                                            Added
                                         </a>
                                     </td>
                                 }

@@ -2,68 +2,132 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.firstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isAccepted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tawjihiAvg)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.userEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Major.majorName)
-        </th>
-        <th></th>
-    </tr>
+<h2>Our Students</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isAccepted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tawjihiAvg)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.userEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Major.majorName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.studentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.studentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.studentId })
-        </td>
-    </tr>
-}
 
-</table>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 ">
+                <div class="row" style="margin-left:20px ; margin-top:15px">
+                    <div class="card-header pb-0 col-md-4">
+                        @*<h6> @Html.ActionLink("Create New", "Create")</h6>*@
+                    </div>
+                    <div class="col-md-8">
+                        @using (Html.BeginForm())
+                        {
+                            <input id="Fname" name="first" type="radio" value="Fname" /><span>First Name &nbsp; &nbsp;</span>
+                            <input id="Mname" name="first" type="radio" value="Mname" /><span>Major Name &nbsp; &nbsp;</span>
+                            <input id="Email" name="first" type="radio" value="Email" /><span>Email &nbsp; &nbsp;</span>
+
+
+                            <input style="border-radius:5px; border:1px solid black; height:40px" id="Search" name="Search" type="text" value="" placeholder="Type Here..." /><span>&nbsp;&nbsp;</span>
+                            <input type="submit" class="btn btn-outline-dark" id="name" name="name" value="Search" />
+                        }
+
+                    </div>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+
+
+
+
+                        <table class="table align-items-center mb-0">
+
+
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">First Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Last Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Image</th>
+                                    @*<th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Tawjihi GPA</th>*@
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10 ps-2">Email</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Major Name</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.firstName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.lastName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+
+                                                    <img name="facilityImage" id="facilityImage" src="~/images/@Html.DisplayFor(modelItem => item.image)" height="50px" width="60px" />
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.tawjihiAvg)
+
+                                            </td>*@
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.userEmail)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+
+
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">   @Html.DisplayFor(modelItem => item.Major.majorName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td class="align-middle text-center">
+                                            @*@Html.ActionLink("Edit", "Edit", new { id = item.studentId }, new { @class = "btn btn-secondary glyphicon glyphicon-pencil" }) |*@
+                                            @Html.ActionLink("Details", "Details", new { id = item.studentId }, new { @class = "btn btn-info" })
+                                        </td>
+
+                                    </tr>
+
+                                }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

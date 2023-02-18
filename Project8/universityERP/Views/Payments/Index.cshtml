@@ -1,0 +1,61 @@
+﻿@model IEnumerable<universityERP.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Accounter.cshtml";
+}
+
+<h2>Done Payment</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Student Name
+        </th>
+        <th>
+            Total Fees
+        </th>
+        <th>
+            Paid
+        </th>
+        <th>
+            Student Wallet
+        </th>
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.firstName)  @Html.DisplayFor(modelItem => item.Student.lastName)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalFees) JD
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.payment1) JD
+            </td>
+            @if (item.Student.wallet == null)
+            {
+                <td> 0.00 JD</td>
+
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.wallet) JD
+                </td>
+            }
+
+
+        </tr>
+    }
+
+
+
+</table>

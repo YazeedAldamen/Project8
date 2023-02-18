@@ -1,0 +1,49 @@
+﻿@model IEnumerable<universityERP.Models.Major>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Accounter.cshtml";
+}
+
+<h2>Major Hourly Price </h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Facility Name
+        </th>
+
+        <th>
+            Major Name
+        </th>
+
+        <th>
+            Major Hour Price
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Facility.facilityName)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.majorName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.majorHourPrice)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.majorId })
+            </td>
+        </tr>
+    }
+
+</table>

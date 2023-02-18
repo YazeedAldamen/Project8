@@ -1,0 +1,44 @@
+﻿@model IEnumerable<universityERP.Models.Doctor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Accounter.cshtml";
+}
+
+<h2>Edit Doctors Salary</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Doctor Name
+        </th>
+        <th>
+            Major Name
+        </th>
+        <th>
+            Doctor Salary
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.doctorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Major.majorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.doctorSalary)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.doctorId })
+            </td>
+        </tr>
+    }
+
+</table>

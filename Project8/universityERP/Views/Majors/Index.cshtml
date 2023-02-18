@@ -2,62 +2,78 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutMajors.cshtml";
-}
-<h2>Index</h2>
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.majorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.majorDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.majorImage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.numberOfHours)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.majorHourPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Facility.facilityName)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.majorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.majorDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.majorImage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.numberOfHours)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.majorHourPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Facility.facilityName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.majorId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.majorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.majorId })
-        </td>
-    </tr>
 }
 
-</table>
+<h2>Majors</h2>
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>
+                        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
+                    </h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Image</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10 ">Name</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight opacity-10">Description</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight opacity-10">Hours</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight opacity-10">HourPrice</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img src="~/images/@Html.DisplayFor(modelItem => item.majorImage)" height="50px" width="60px" />
+
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">@Html.DisplayFor(modelItem => item.majorName)</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+
+                                            <p class="text-s font-weight-bold mb-0">@Html.DisplayFor(modelItem => item.majorDescription)</p>
+                                        </td>
+                                        <td class="align-middle text-center text-sm">
+                                            <span class="badge badge-sm bg-gradient-secondary"> @Html.DisplayFor(modelItem => item.numberOfHours)</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <span class="text-secondary text-xs font-weight-bold">@Html.DisplayFor(modelItem => item.majorHourPrice)</span>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.majorId }, new { @class = "btn btn-secondary glyphicon glyphicon-pencil" }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.majorId }, new { @class = "btn btn-info" })
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -17,6 +17,7 @@ namespace universityERP.Models
         public int paymentId { get; set; }
         public Nullable<int> studentId { get; set; }
         public Nullable<int> payment1 { get; set; }
+        public Nullable<int> totalFees { get; set; }
     
         public virtual Student Student { get; set; }
     }

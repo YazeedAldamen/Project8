@@ -2,73 +2,83 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Student</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
+<main class="main-content  mt-0">
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-6 col-md-6 d-flex flex-column mx-auto">
+                        <div class="card card-plain mt-8" style="margin-top: 0px !important">
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-gradient">Details</h3>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.image)
-        </dt>
+                            </div>
+                            <!-- Form start -->
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="card-body">
+                                    <form role="form">
 
-        <dd>
-            @Html.DisplayFor(model => model.image)
-        </dd>
+                                        <div class="mb-3">
+                                            <label>First Name</label> &emsp;&emsp;     @Html.DisplayFor(model => model.firstName)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isAccepted)
-        </dt>
+                                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.isAccepted)
-        </dd>
+                                        <div class="mb-3">
+                                            <label>Last Name</label> &emsp;&emsp;     @Html.DisplayFor(model => model.lastName)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tawjihiAvg)
-        </dt>
+                                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.tawjihiAvg)
-        </dd>
+                                        <div class="mb-3">
+                                            <label>Major Image</label> &emsp;&emsp;   <img src="~/images/@Html.DisplayFor(model => model.image) " height="50px" width="60px" />
+                                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.userEmail)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.userEmail)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Major.majorName)
-        </dt>
+                                        <div class="mb-3">
+                                            <label>Tawjihi GPA</label> &emsp;&emsp;  @Html.DisplayFor(model => model.tawjihiAvg)
+                                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Major.majorName)
-        </dd>
+                                        <div class="mb-3">
+                                            <label>Email</label> &emsp;&emsp;  @Html.DisplayFor(model => model.userEmail)
+                                        </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.studentId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                                        <div class="mb-3">
+                                            <label>Major</label> &emsp;&emsp;  @Html.DisplayFor(model => model.Major.majorName)
+                                        </div>
+
+
+                                        <br />
+                                        <div class="text-center">
+                                            <a href="~/Students/Index" class="btn bg-gradient-dark w-100">
+                                                Back to List
+                                            </a>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+
+

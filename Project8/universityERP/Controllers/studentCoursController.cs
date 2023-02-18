@@ -5,12 +5,14 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using universityERP.Models;
 
 namespace universityERP.Controllers
 {
+[Authorize] 
     public class studentCoursController : Controller
     {
         private universityERPEntities db = new universityERPEntities();
@@ -34,7 +36,7 @@ namespace universityERP.Controllers
 
         [HttpPost, ActionName("Pay")]
         [ValidateAntiForgeryToken]
-        public ActionResult Pay([Bind(Include = "paymentId,studentId,payment")] int Payment)
+        public ActionResult Pay([Bind(Include = "paymentId,studentId,payment,totalFees")] int Payment)
         {
             var user = User.Identity.GetUserName().ToString();
 
@@ -44,7 +46,7 @@ namespace universityERP.Controllers
             {
                 studentId = Sid,
                 payment1 = Payment,
-
+                totalFees = int.Parse(Session["totalFees"].ToString()),
 
             };
 
@@ -73,6 +75,21 @@ namespace universityERP.Controllers
                 db.Payments.Add(PY);
 
                 db.SaveChanges();
+                string Email = db.Students.Where(x => x.studentId == Sid).Select(x=>x.userEmail).Single();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(Email);
+                mail.From = new MailAddress("hopeorganization23@gmail.com");
+                mail.Subject = "UniCat Admission";
+                mail.Body = $"Your Payment of {Payment} JD has been successfully done and your schedual has been set";
+
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Port = 587; // 25 465
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Host = "smtp.gmail.com";
+                smtp.Credentials = new System.Net.NetworkCredential("hopeorganization23@gmail.com", "mbuyaativxrfntjx\r\n");
+                smtp.Send(mail);
                 return RedirectToAction("Index2");
 
             }

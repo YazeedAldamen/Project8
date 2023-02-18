@@ -4,6 +4,7 @@
     <EntitySet Name="C__MigrationHistory" EntityType="universityERPModel.C__MigrationHistory" />
     <EntitySet Name="AspNetRoles" EntityType="universityERPModel.AspNetRole" />
     <EntitySet Name="AspNetUserClaims" EntityType="universityERPModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserRoles" EntityType="universityERPModel.AspNetUserRole" />
     <EntitySet Name="AspNetUsers" EntityType="universityERPModel.AspNetUser" />
     <EntitySet Name="Courses" EntityType="universityERPModel.Cours" />
     <EntitySet Name="Doctors" EntityType="universityERPModel.Doctor" />
@@ -14,9 +15,17 @@
     <EntitySet Name="Students" EntityType="universityERPModel.Student" />
     <EntitySet Name="sysdiagrams" EntityType="universityERPModel.sysdiagram" />
     <EntitySet Name="AspNetUserLogins" EntityType="universityERPModel.AspNetUserLogin" />
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="universityERPModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="universityERPModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRole" EntitySet="AspNetUserRoles" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -54,10 +63,6 @@
       <End Role="Student" EntitySet="Students" />
       <End Role="studentCours" EntitySet="studentCourses" />
     </AssociationSet>
-    <AssociationSet Name="AspNetUserRoles" Association="universityERPModel.AspNetUserRoles">
-      <End Role="AspNetRole" EntitySet="AspNetRoles" />
-      <End Role="AspNetUser" EntitySet="AspNetUsers" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
     <Key>
@@ -75,7 +80,7 @@
     </Key>
     <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="AspNetUsers" Relationship="universityERPModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUserRoles" Relationship="universityERPModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetRole" ToRole="AspNetUserRole" />
   </EntityType>
   <EntityType Name="AspNetUserClaim">
     <Key>
@@ -86,6 +91,17 @@
     <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserRole">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="userEmail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetRole" Relationship="universityERPModel.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" FromRole="AspNetUserRole" ToRole="AspNetRole" />
+    <NavigationProperty Name="AspNetUser" Relationship="universityERPModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUserRole" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="AspNetUser">
     <Key>
@@ -104,8 +120,8 @@
     <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUserClaims" Relationship="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserRoles" Relationship="universityERPModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserRole" />
     <NavigationProperty Name="AspNetUserLogins" Relationship="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-    <NavigationProperty Name="AspNetRoles" Relationship="universityERPModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
   </EntityType>
   <EntityType Name="Cours">
     <Key>
@@ -164,6 +180,7 @@
     <Property Name="paymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="studentId" Type="Int32" />
     <Property Name="payment1" Type="Int32" />
+    <Property Name="totalFees" Type="Int32" />
     <NavigationProperty Name="Student" Relationship="universityERPModel.FK__Payments__studen__7F2BE32F" FromRole="Payment" ToRole="Student" />
   </EntityType>
   <EntityType Name="studentCours">
@@ -215,6 +232,20 @@
     <Property Name="UserId" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="AspNetUser" Relationship="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
   </EntityType>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Type="universityERPModel.AspNetRole" Role="AspNetRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="universityERPModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRole">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
     <End Type="universityERPModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -225,6 +256,20 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Type="universityERPModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="universityERPModel.AspNetUserRole" Role="AspNetUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRole">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
@@ -338,9 +383,5 @@
         <PropertyRef Name="studentId" />
       </Dependent>
     </ReferentialConstraint>
-  </Association>
-  <Association Name="AspNetUserRoles">
-    <End Type="universityERPModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-    <End Type="universityERPModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
   </Association>
 </Schema>

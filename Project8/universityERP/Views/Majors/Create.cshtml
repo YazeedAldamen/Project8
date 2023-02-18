@@ -2,79 +2,84 @@
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
 }
 
-<h2>Create</h2>
+<main class="main-content  mt-0">
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-7 col-lg-6 col-md-6 d-flex flex-column mx-auto">
+                        <div class="card card-plain mt-8" style="margin-top:20px !important">
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-gradient">Create</h3>
+
+                            </div>
+                            <!-- Form start -->
+                            @using (Html.BeginForm("Create", "Majors", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="card-body">
+                                    <form role="form">
+                                        <label>Major Name</label>
+                                        <div class="mb-3">
+                                            @Html.EditorFor(model => model.majorName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.majorName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <label>Major Description</label>
+                                        <div class="mb-3">
+                                            @Html.EditorFor(model => model.majorDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.majorDescription, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <label>Major Image</label>
+                                        <div class="mb-3">
+                                            <input class="form-control text-box single-line" id="majorImage" name="majorImage" type="file" value="" accept=".png,.jpg,.jpeg,.gif,.tif,.jfif" />
+
+                                        </div>
+                                        <label>Hours</label>
+                                        <div class="mb-3">
+
+                                            @Html.EditorFor(model => model.numberOfHours, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.numberOfHours, "", new { @class = "text-danger" })
+                                        </div>
+                                        <label>Hour Price</label>
+                                        <div class="mb-3">
+
+                                            @Html.EditorFor(model => model.majorHourPrice, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.majorHourPrice, "", new { @class = "text-danger" })
+                                        </div>
+                                        <label>Faculity </label>
+                                        <div class="mb-3">
+
+                                            @Html.DropDownList("facilityId", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.facilityId, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        <div class="text-center">
+                                            <input type="submit" value="Create" class="btn bg-gradient-info w-100 mt-4 mb-0" />
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Major</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.majorName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.majorName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.majorName, "", new { @class = "text-danger" })
+                                        </div>
+                                        <br />
+
+                                        <div class="text-center">
+                                            <a href="~/Majors/Index" class="btn bg-gradient-dark w-100">
+                                                Back to List
+                                            </a>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+    </section>
+</main>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.majorDescription, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.majorDescription, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.majorDescription, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.majorImage, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.majorImage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.majorImage, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.numberOfHours, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.numberOfHours, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.numberOfHours, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.majorHourPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.majorHourPrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.majorHourPrice, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.facilityId, "facilityId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("facilityId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.facilityId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
