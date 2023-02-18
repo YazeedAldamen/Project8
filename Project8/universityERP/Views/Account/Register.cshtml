@@ -1,0 +1,119 @@
+﻿@model universityERP.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+
+    Layout = "~/Views/Shared/_LayoutSign.cshtml";
+}
+
+
+
+<main class="main-content mt-0">
+    <section>
+        <div class="page-header min-vh-75">
+            <div class="container">
+                <div class="row d-flex ">
+                    <div class="col-xl-4 col-lg-5 col-md-6 d-flex  flex-column mx-auto">
+                        <div class="card card-plain mt-8">
+
+                            <div class="card-header pb-0 text-left bg-transparent">
+                                <h3 class="font-weight-bolder text-info text-gradient">
+                                    Welcome back
+                                </h3>
+                                <p class="mb-0">Enter your email and password to sign in</p>
+                            </div>
+                            <div class="card-body">
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+
+                                <div class="mb-3">
+
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+
+                                <div class="mb-3">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                                <div class="mb-3">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+
+                                </div>
+
+                                <label for="firstName" class="col-md-2 control-label">First Name</label>
+                                <div class="mb-3">
+
+
+                                    <input type="text" name="firstName" id="firstName" value="" class="form-control" required />
+
+                                </div>
+                                <label for="lastName" class="col-md-2 control-label">Last Name</label>
+                                <div class="mb-3">
+                                    <input type="text" name="lastName" id="lastName" value="" class="form-control" required />
+                                </div>
+
+
+                                <label for="image" class="col-md-2 control-label">Image</label>
+                                <div class="mb-3">
+                                    <input type="file" name="image" id="image" value="" class="form-control" required />
+                                </div>
+                                <label for="tawjihiAvg" class="col-md-2 control-label">Tawjihi GPA</label>
+                                <div class="mb-3">
+                                    <input type="number" min="65" max="100" name="tawjihiAvg" id="tawjihiAvg" value="" class="form-control" required />
+                                </div>
+
+
+
+
+
+                                <div class="text-center">
+
+
+
+                                    <input type="submit" class="btn btn-default" value="Register" />
+                                </div>
+                            }
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+                        <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6"
+                             style="
+                      background-image: url('../../Templates/Admin/assets/img/curved-images/white-curved.jpeg');
+                    "></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
+<script>
+    function showAlert() {
+        swal("Hello world!");
+    }
+</script>
+
+
+
+
+
+
+
+
+
+

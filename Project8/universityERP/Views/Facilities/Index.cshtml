@@ -1,0 +1,45 @@
+﻿@model IEnumerable<universityERP.Models.Facility>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.facilityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.facilityDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.facilityImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.facilityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.facilityDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.facilityImage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.facilityId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.facilityId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.facilityId })
+        </td>
+    </tr>
+}
+
+</table>

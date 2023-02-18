@@ -1,0 +1,63 @@
+﻿@model IEnumerable<universityERP.Models.Major>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutMajors.cshtml";
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.majorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.majorDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.majorImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.numberOfHours)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.majorHourPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Facility.facilityName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.majorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.majorDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.majorImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.numberOfHours)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.majorHourPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Facility.facilityName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.majorId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.majorId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.majorId })
+        </td>
+    </tr>
+}
+
+</table>

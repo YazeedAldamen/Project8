@@ -1,0 +1,40 @@
+﻿@model universityERP.Models.studentCours
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
+
+
+<div class="container">
+    <h3>Are you sure you want to withdraw from this Course?</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Cours.courseName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cours.courseName)
+            </dd>
+
+
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index2")
+            </div>
+        }
+    </div>
+</div>

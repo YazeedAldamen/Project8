@@ -1,0 +1,42 @@
+﻿@model universityERP.Models.Cours
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cours</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.courseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.courseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.courseHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.courseHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Major.majorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Major.majorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.courseId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

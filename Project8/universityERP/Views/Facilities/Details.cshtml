@@ -1,0 +1,42 @@
+﻿@model universityERP.Models.Facility
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Facility</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.facilityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facilityDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilityDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facilityImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilityImage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.facilityId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

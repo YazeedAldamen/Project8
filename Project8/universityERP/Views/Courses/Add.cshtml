@@ -1,0 +1,50 @@
+﻿@model universityERP.Models.Cours
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
+
+<div class="container">
+    <h3>Are you sure you want to Add this Course?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.courseName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.courseName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.courseHours)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.courseHours)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Major.majorName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Major.majorName)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Add" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index2")
+            </div>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9b3c14cf62b427daf3cf8d8506cb97e" Name="Diagram1">
+        <EntityTypeShape EntityType="universityERPModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="universityERPModel.AspNetRole" Width="1.5" PointX="9.75" PointY="10.5" />
+        <EntityTypeShape EntityType="universityERPModel.AspNetUserClaim" Width="1.5" PointX="14.25" PointY="11.625" />
+        <EntityTypeShape EntityType="universityERPModel.AspNetUser" Width="1.5" PointX="12" PointY="9.375" />
+        <EntityTypeShape EntityType="universityERPModel.Cours" Width="1.5" PointX="7.5" PointY="6.625" />
+        <EntityTypeShape EntityType="universityERPModel.Doctor" Width="1.5" PointX="5.25" PointY="7" />
+        <EntityTypeShape EntityType="universityERPModel.Facility" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="universityERPModel.Major" Width="1.5" PointX="3" PointY="4.5" />
+        <EntityTypeShape EntityType="universityERPModel.Payment" Width="1.5" PointX="7.5" PointY="3.75" />
+        <EntityTypeShape EntityType="universityERPModel.studentCours" Width="1.5" PointX="9.75" PointY="5" />
+        <EntityTypeShape EntityType="universityERPModel.Student" Width="1.5" PointX="5.25" PointY="3" />
+        <EntityTypeShape EntityType="universityERPModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="universityERPModel.AspNetUserLogin" Width="1.5" PointX="14.25" PointY="9" />
+        <AssociationConnector Association="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="universityERPModel.FK__Courses__doctorI__03F0984C" />
+        <AssociationConnector Association="universityERPModel.FK__Courses__majorId__4F7CD00D" />
+        <AssociationConnector Association="universityERPModel.FK__studentCo__cours__619B8048" />
+        <AssociationConnector Association="universityERPModel.FK__Doctors__majorId__02FC7413" />
+        <AssociationConnector Association="universityERPModel.FK__Majors__facility__48CFD27E" />
+        <AssociationConnector Association="universityERPModel.FK__Students__majorI__5DCAEF64" />
+        <AssociationConnector Association="universityERPModel.FK__Payments__studen__7F2BE32F" />
+        <AssociationConnector Association="universityERPModel.FK__studentCo__stude__628FA481" />
+        <AssociationConnector Association="universityERPModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

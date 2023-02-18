@@ -1,0 +1,172 @@
+﻿@model IEnumerable<universityERP.Models.Cours>
+
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+<h2></h2>
+
+<div class="container" id="con">
+    <h4>Courses</h4>
+    <hr />
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6></h6>
+        </div>
+        <div id="table" class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.courseName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.courseHours)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Major.majorName)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.courseName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.courseHours)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Major.majorName)
+                            </td>
+
+                            @{
+
+                                universityERP.Models.universityERPEntities db = new universityERP.Models.universityERPEntities();
+                                //universityERP.Models.AspNetUser netUser = new universityERP.Models.AspNetUser();
+                                //var user = netUser.Email;
+                                var user = User.Identity.Name;
+
+
+
+                                var sc = db.studentCourses.Where(x => x.Student.userEmail == user).ToList();
+                                var ispaid = db.studentCourses.Where(x => x.Student.userEmail == user).Select(x => x.isPaid).FirstOrDefault();
+
+
+                                var sum = sc.Sum(x => x.Cours.courseHours).ToString();
+                                int summ = Convert.ToInt32(sum);
+                            }
+
+
+                            @{bool add = true;}
+                            @if (ispaid == null)
+                            {
+
+                                foreach (var record in sc)
+                                {
+                                    if (record.courseId == item.courseId)
+                                    {
+                                        add = false;
+                                    }
+                                }
+
+                                if (summ >= 18)
+                                {
+
+                                    <td>
+                                        <a class="btn btn-primary launch" data-toggle="modal" data-target="#staticBackdrop2">
+                                            Add
+                                        </a>
+                                    </td>
+
+
+                                }
+
+                                else if (add == false)
+                                {
+                                    <td>
+                                        <a class="btn btn-danger launch" data-toggle="modal" data-target="#staticBackdrop">
+                                            Add
+                                        </a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td>
+
+                                        @Html.ActionLink("Add", "Add", new { id = item.courseId }, new { @class = "btn btn-success" })
+                                    </td>
+                                }
+
+
+                            }
+
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-right"><i class="fa fa-close close" data-dismiss="modal"></i></div>
+                <div class="tabs mt-3">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                            <div class="mt-4 mx-4">
+                                <div class="text-center">
+                                    <h5>You already enrolled in this course</h5>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-right"><i class="fa fa-close close" data-dismiss="modal"></i></div>
+                <div class="tabs mt-3">
+
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                            <div class="mt-4 mx-4">
+                                <div class="text-center">
+                                    <h5>You already enrolled 18 hours</h5>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+

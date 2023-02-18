@@ -1,0 +1,66 @@
+﻿@model universityERP.Models.Major
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Major</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.majorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.majorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.majorDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.majorDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.majorImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.majorImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfHours)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfHours)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.majorHourPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.majorHourPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Facility.facilityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Facility.facilityName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.majorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

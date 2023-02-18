@@ -1,0 +1,195 @@
+﻿@model IEnumerable<universityERP.Models.studentCours>
+
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
+
+<h2></h2>
+<style>
+    #con2 {
+        width: 50%;
+    }
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a8b56cb52b.js" crossorigin="anonymous"></script>
+<div class="container" id="con">
+    <h4>Course Schedual</h4>
+    <hr />
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6></h6>
+        </div>
+        <div id="table" class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table">
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cours.courseName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cours.courseHours)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cours.courseName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cours.courseHours)
+                            </td>
+                            @if (item.isPaid == null)
+                            {
+                                <td>
+
+                                    @Html.ActionLink("Withdraw", "Delete", new { id = item.Id }, new { @class = "btn" })
+                                </td>
+                            }
+                        </tr>
+                    }
+
+
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+@{
+try{ 
+    
+        var sum = Model.Sum(x => x.Cours.courseHours).ToString();
+        int summ = Convert.ToInt32(sum);
+
+
+        var price = Model.Select(x => x.Student.Major.majorHourPrice).FirstOrDefault();
+        int pricee = Convert.ToInt32(price);
+        int multi = (summ * pricee) + 50;
+        int wallet = (int)Model.Select(x => x.Student.wallet).FirstOrDefault();
+        int rest = multi - wallet;
+
+        var ispaid = Model.Select(x => x.isPaid).FirstOrDefault();
+
+
+
+
+
+        if (ispaid == null)
+        {
+            <div id="con2" class="container">
+                <div class="card mb-4 container">
+                    <div class="card-header pb-0">
+                        <h6></h6>
+                    </div>
+                    <div id="table" class="card-body px-0 pt-0 pb-2">
+                        <div class="table-responsive p-0">
+                            <table class="table">
+                                <tr>
+                                    <td>Total Fees</td>
+                                    <td>@multi JD</td>
+                                </tr>
+                                <tr>
+                                    <td>The balance in your wallet</td>
+                                    <td>@wallet JD</td>
+                                </tr>
+                                <tr>
+                                    <td>Pay the fees and set the schedule</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success launch" data-toggle="modal" data-target="#staticBackdrop">
+                                            Add Card
+                                        </button>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-right"><i class="fa fa-close close" data-dismiss="modal"></i></div>
+                        <div class="tabs mt-3">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="visa-tab" data-toggle="tab" href="#visa" role="tab" aria-controls="visa" aria-selected="true">
+                                        <img src="https://i.imgur.com/sB4jftM.png" width="80">
+                                    </a>
+                                </li>
+
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="visa" role="tabpanel" aria-labelledby="visa-tab">
+                                    <div class="mt-4 mx-4">
+                                        <div class="text-center">
+                                            <h5>Credit card</h5>
+                                        </div>
+                                        @using (Html.BeginForm("Pay", "studentCours", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <div class="form mt-3">
+                                                <div class="inputbox">
+                                                    <span>Cardholder Name</span>
+                                                    <input type="text" name="name" class="form-control" required="required">
+
+                                                </div>
+                                                <div class="inputbox">
+                                                    <span>Card Number</span>
+                                                    <input type="text" name="name" min="1" max="999" class="form-control" required="required">
+
+                                                </div>
+                                                <div class="inputbox">
+                                                    <span>Expiration Date</span>
+                                                    <input type="text" name="name" min="1" max="999" class="form-control" required="required">
+
+                                                </div>
+                                                <div class="inputbox">
+                                                    <span>CVV</span>
+                                                    <input type="text" name="name" min="1" max="999" class="form-control" required="required">
+
+                                                </div>
+                                                <div class="inputbox">
+                                                    <span>Amount</span>
+                                                    <input type="number" name="Payment" value="@rest" min="@rest" max="999" class="form-control" required="required">
+
+                                                </div>
+
+                                                <br />
+                                                <div class="px-9 pay">
+                                                    <input type="submit" value="Pay" class="btn btn-success btn-block" />
+
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br /> }
+    catch (Exception){
+        
+    }
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

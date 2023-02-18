@@ -1,0 +1,49 @@
+﻿@model IEnumerable<universityERP.Models.Major>
+
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_LayoutMajors.cshtml";
+}
+
+<div class="courses">
+    <div class="container">
+        <h2>Our Majors</h2>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="courses_container">
+                    <div class="row courses_row">
+                        <!-- Course -->
+                        @foreach (var item in Model)
+                        {
+                            <a href="@Url.Action("Register", "Account", new { majorId = item.majorId })">
+                                <div class="col-lg-4 course_col">
+                                    <div class="course">
+                                        <div class="course_image">
+                                            <img src="~/images/Facilites/@item.majorImage" alt="" />
+                                        </div>
+                                        <div class="course_body">
+                                            <h3 class="course_title">
+                                                <a href="course.html">@item.majorName</a>
+                                            </h3>
+
+                                            <div class="course_text">
+                                                <p>
+                                                    @item.majorDescription
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                            
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

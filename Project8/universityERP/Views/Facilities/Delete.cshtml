@@ -1,0 +1,48 @@
+﻿@model universityERP.Models.Facility
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Facility</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.facilityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facilityDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilityDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.facilityImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.facilityImage)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

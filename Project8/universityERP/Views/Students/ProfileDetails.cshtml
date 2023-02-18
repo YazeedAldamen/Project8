@@ -1,0 +1,66 @@
+﻿@model universityERP.Models.Student
+
+@{
+    ViewBag.Title = "ProfileDetails";
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
+<style>
+    table {
+        border: 1px solid black;
+        padding: 10px;
+    }
+
+    #con {
+        width: 70%;
+    }
+</style>
+
+
+<div class="container" id="con">
+    <h4>Student Information</h4>
+    <hr />
+    <div class="card mb-4">
+        <div class="card-header pb-0">
+            <h6></h6>
+        </div>
+        <div id="table" class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+                <table class="table">
+                    <tr>
+                        <td>Photo</td>
+                        <td>
+
+                            <img src="~/images/@Model.image" width="400" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td>@Html.DisplayFor(model => model.firstName)</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td>@Html.DisplayFor(model => model.lastName)</td>
+                    </tr>
+
+
+                    <tr>
+                        <td>High School Rate</td>
+                        <td> @Html.DisplayFor(model => model.tawjihiAvg)</td>
+                    </tr>
+                    <tr>
+                        <td>Email Address</td>
+                        <td>@Html.DisplayFor(model => model.userEmail)</td>
+                    </tr>
+                    <tr>
+                        <td>Major</td>
+                        <td> @Html.DisplayFor(model => model.Major.majorName)</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<br />
+

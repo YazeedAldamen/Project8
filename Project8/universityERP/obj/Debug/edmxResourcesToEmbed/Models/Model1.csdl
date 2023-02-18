@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="universityERPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="universityERPEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="universityERPModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="universityERPModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="universityERPModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUsers" EntityType="universityERPModel.AspNetUser" />
+    <EntitySet Name="Courses" EntityType="universityERPModel.Cours" />
+    <EntitySet Name="Doctors" EntityType="universityERPModel.Doctor" />
+    <EntitySet Name="Facilities" EntityType="universityERPModel.Facility" />
+    <EntitySet Name="Majors" EntityType="universityERPModel.Major" />
+    <EntitySet Name="Payments" EntityType="universityERPModel.Payment" />
+    <EntitySet Name="studentCourses" EntityType="universityERPModel.studentCours" />
+    <EntitySet Name="Students" EntityType="universityERPModel.Student" />
+    <EntitySet Name="sysdiagrams" EntityType="universityERPModel.sysdiagram" />
+    <EntitySet Name="AspNetUserLogins" EntityType="universityERPModel.AspNetUserLogin" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Courses__doctorI__03F0984C" Association="universityERPModel.FK__Courses__doctorI__03F0984C">
+      <End Role="Doctor" EntitySet="Doctors" />
+      <End Role="Cours" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Courses__majorId__4F7CD00D" Association="universityERPModel.FK__Courses__majorId__4F7CD00D">
+      <End Role="Major" EntitySet="Majors" />
+      <End Role="Cours" EntitySet="Courses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__studentCo__cours__619B8048" Association="universityERPModel.FK__studentCo__cours__619B8048">
+      <End Role="Cours" EntitySet="Courses" />
+      <End Role="studentCours" EntitySet="studentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Doctors__majorId__02FC7413" Association="universityERPModel.FK__Doctors__majorId__02FC7413">
+      <End Role="Major" EntitySet="Majors" />
+      <End Role="Doctor" EntitySet="Doctors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Majors__facility__48CFD27E" Association="universityERPModel.FK__Majors__facility__48CFD27E">
+      <End Role="Facility" EntitySet="Facilities" />
+      <End Role="Major" EntitySet="Majors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Students__majorI__5DCAEF64" Association="universityERPModel.FK__Students__majorI__5DCAEF64">
+      <End Role="Major" EntitySet="Majors" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Payments__studen__7F2BE32F" Association="universityERPModel.FK__Payments__studen__7F2BE32F">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__studentCo__stude__628FA481" Association="universityERPModel.FK__studentCo__stude__628FA481">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="studentCours" EntitySet="studentCourses" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="universityERPModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="universityERPModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="universityERPModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="AspNetRoles" Relationship="universityERPModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="Cours">
+    <Key>
+      <PropertyRef Name="courseId" />
+    </Key>
+    <Property Name="courseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="courseHours" Type="Int32" />
+    <Property Name="majorId" Type="Int32" />
+    <Property Name="doctorId" Type="Int32" />
+    <NavigationProperty Name="Doctor" Relationship="universityERPModel.FK__Courses__doctorI__03F0984C" FromRole="Cours" ToRole="Doctor" />
+    <NavigationProperty Name="Major" Relationship="universityERPModel.FK__Courses__majorId__4F7CD00D" FromRole="Cours" ToRole="Major" />
+    <NavigationProperty Name="studentCourses" Relationship="universityERPModel.FK__studentCo__cours__619B8048" FromRole="Cours" ToRole="studentCours" />
+  </EntityType>
+  <EntityType Name="Doctor">
+    <Key>
+      <PropertyRef Name="doctorId" />
+    </Key>
+    <Property Name="doctorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="doctorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="doctorSalary" Type="Int32" />
+    <Property Name="majorId" Type="Int32" />
+    <NavigationProperty Name="Courses" Relationship="universityERPModel.FK__Courses__doctorI__03F0984C" FromRole="Doctor" ToRole="Cours" />
+    <NavigationProperty Name="Major" Relationship="universityERPModel.FK__Doctors__majorId__02FC7413" FromRole="Doctor" ToRole="Major" />
+  </EntityType>
+  <EntityType Name="Facility">
+    <Key>
+      <PropertyRef Name="facilityId" />
+    </Key>
+    <Property Name="facilityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="facilityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="facilityDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="facilityImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Majors" Relationship="universityERPModel.FK__Majors__facility__48CFD27E" FromRole="Facility" ToRole="Major" />
+  </EntityType>
+  <EntityType Name="Major">
+    <Key>
+      <PropertyRef Name="majorId" />
+    </Key>
+    <Property Name="majorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="majorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="majorDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="majorImage" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="numberOfHours" Type="Int32" />
+    <Property Name="majorHourPrice" Type="Int32" />
+    <Property Name="facilityId" Type="Int32" />
+    <NavigationProperty Name="Courses" Relationship="universityERPModel.FK__Courses__majorId__4F7CD00D" FromRole="Major" ToRole="Cours" />
+    <NavigationProperty Name="Doctors" Relationship="universityERPModel.FK__Doctors__majorId__02FC7413" FromRole="Major" ToRole="Doctor" />
+    <NavigationProperty Name="Facility" Relationship="universityERPModel.FK__Majors__facility__48CFD27E" FromRole="Major" ToRole="Facility" />
+    <NavigationProperty Name="Students" Relationship="universityERPModel.FK__Students__majorI__5DCAEF64" FromRole="Major" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="paymentId" />
+    </Key>
+    <Property Name="paymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="studentId" Type="Int32" />
+    <Property Name="payment1" Type="Int32" />
+    <NavigationProperty Name="Student" Relationship="universityERPModel.FK__Payments__studen__7F2BE32F" FromRole="Payment" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="studentCours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="courseId" Type="Int32" />
+    <Property Name="studentId" Type="Int32" />
+    <Property Name="isPaid" Type="Boolean" />
+    <NavigationProperty Name="Cours" Relationship="universityERPModel.FK__studentCo__cours__619B8048" FromRole="studentCours" ToRole="Cours" />
+    <NavigationProperty Name="Student" Relationship="universityERPModel.FK__studentCo__stude__628FA481" FromRole="studentCours" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="studentId" />
+    </Key>
+    <Property Name="studentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="majorId" Type="Int32" />
+    <Property Name="isAccepted" Type="Boolean" />
+    <Property Name="tawjihiAvg" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="userEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="wallet" Type="Int32" />
+    <NavigationProperty Name="Major" Relationship="universityERPModel.FK__Students__majorI__5DCAEF64" FromRole="Student" ToRole="Major" />
+    <NavigationProperty Name="Payments" Relationship="universityERPModel.FK__Payments__studen__7F2BE32F" FromRole="Student" ToRole="Payment" />
+    <NavigationProperty Name="studentCourses" Relationship="universityERPModel.FK__studentCo__stude__628FA481" FromRole="Student" ToRole="studentCours" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="universityERPModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="universityERPModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="universityERPModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="universityERPModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="universityERPModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Courses__doctorI__03F0984C">
+    <End Type="universityERPModel.Doctor" Role="Doctor" Multiplicity="0..1" />
+    <End Type="universityERPModel.Cours" Role="Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doctor">
+        <PropertyRef Name="doctorId" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="doctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Courses__majorId__4F7CD00D">
+    <End Type="universityERPModel.Major" Role="Major" Multiplicity="0..1" />
+    <End Type="universityERPModel.Cours" Role="Cours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="majorId" />
+      </Principal>
+      <Dependent Role="Cours">
+        <PropertyRef Name="majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__studentCo__cours__619B8048">
+    <End Type="universityERPModel.Cours" Role="Cours" Multiplicity="0..1" />
+    <End Type="universityERPModel.studentCours" Role="studentCours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cours">
+        <PropertyRef Name="courseId" />
+      </Principal>
+      <Dependent Role="studentCours">
+        <PropertyRef Name="courseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Doctors__majorId__02FC7413">
+    <End Type="universityERPModel.Major" Role="Major" Multiplicity="0..1" />
+    <End Type="universityERPModel.Doctor" Role="Doctor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="majorId" />
+      </Principal>
+      <Dependent Role="Doctor">
+        <PropertyRef Name="majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Majors__facility__48CFD27E">
+    <End Type="universityERPModel.Facility" Role="Facility" Multiplicity="0..1" />
+    <End Type="universityERPModel.Major" Role="Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facility">
+        <PropertyRef Name="facilityId" />
+      </Principal>
+      <Dependent Role="Major">
+        <PropertyRef Name="facilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Students__majorI__5DCAEF64">
+    <End Type="universityERPModel.Major" Role="Major" Multiplicity="0..1" />
+    <End Type="universityERPModel.Student" Role="Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="majorId" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="majorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Payments__studen__7F2BE32F">
+    <End Type="universityERPModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="universityERPModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__studentCo__stude__628FA481">
+    <End Type="universityERPModel.Student" Role="Student" Multiplicity="0..1" />
+    <End Type="universityERPModel.studentCours" Role="studentCours" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="studentId" />
+      </Principal>
+      <Dependent Role="studentCours">
+        <PropertyRef Name="studentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="universityERPModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="universityERPModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+</Schema>
