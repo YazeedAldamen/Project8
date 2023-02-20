@@ -66,26 +66,26 @@ namespace universityERP.Controllers
             double count = db.Payments.Where(d => d.Student.Major.facilityId == 1).Count();
             double avg = Convert.ToDouble(sum) / count;
 
-            var sum1 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Sum(d => d.payment1);
-            double count1 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Count();
-            double avg1 = Convert.ToDouble(sum) / count;
+            var sum1 = db.Payments.Where(d => d.Student.Major.facilityId == 2).Sum(d => d.payment1);
+            double count1 = db.Payments.Where(d => d.Student.Major.facilityId == 2).Count();
+            double avg1 = Convert.ToDouble(sum1) / count1;
 
-            var sum2 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Sum(d => d.payment1);
-            double count2 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Count();
-            double avg2 = Convert.ToDouble(sum) / count;
+            var sum2 = db.Payments.Where(d => d.Student.Major.facilityId == 3).Sum(d => d.payment1);
+            double count2 = db.Payments.Where(d => d.Student.Major.facilityId == 3).Count();
+            double avg2 = Convert.ToDouble(sum2) / count2;
 
-            var sum3 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Sum(d => d.payment1);
-            double count3 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Count();
-            double avg3 = Convert.ToDouble(sum) / count;
+            var sum3 = db.Payments.Where(d => d.Student.Major.facilityId == 4).Sum(d => d.payment1);
+            double count3 = db.Payments.Where(d => d.Student.Major.facilityId == 4).Count();
+            double avg3 = Convert.ToDouble(sum3) / count3;
 
-            var sum4 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Sum(d => d.payment1);
-            double count4 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Count();
-            double avg4 = Convert.ToDouble(sum) / count;
+            var sum4 = db.Payments.Where(d => d.Student.Major.facilityId == 5).Sum(d => d.payment1);
+            double count4 = db.Payments.Where(d => d.Student.Major.facilityId == 5).Count();
+            double avg4 = Convert.ToDouble(sum4) / count4;
 
 
-            var sum5 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Sum(d => d.payment1);
-            double count5 = db.Payments.Where(d => d.Student.Major.facilityId == 1).Count();
-            double avg5 = Convert.ToDouble(sum) / count;
+            var sum5 = db.Payments.Where(d => d.Student.Major.facilityId == 6).Sum(d => d.payment1);
+            double count5 = db.Payments.Where(d => d.Student.Major.facilityId == 6).Count();
+            double avg5 = Convert.ToDouble(sum5) / count5;
 
 
             var chart = new Chart(width: 500, height: 400)

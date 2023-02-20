@@ -34,8 +34,13 @@ namespace universityERP.Controllers
         }
 [Authorize(Roles ="Admin")]
 
-        public ActionResult Accepted()
+        public ActionResult Accepted(string Search, string first)
         {
+            var students = db.Students.Where(x => x.isAccepted == false).ToList();
+            if (first == "Fname") { students = db.Students.Where(x => x.firstName.Contains(Search)).ToList(); return View(students); }
+            else if (first == "Mname") { students = db.Students.Where(x => x.Major.majorName.Contains(Search)).ToList(); return View(students); }
+            else if (first == "Email") { students = db.Students.Where(x => x.userEmail.Contains(Search)).ToList(); return View(students); }
+
             var student = db.Students.Where(x => x.isAccepted == false).ToList();
 
             return View(student);
@@ -57,7 +62,7 @@ namespace universityERP.Controllers
             return View(student);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Student")]
         public ActionResult ProfileDetails()
         {
 

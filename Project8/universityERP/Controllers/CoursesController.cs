@@ -78,7 +78,7 @@ namespace universityERP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "courseId,courseName,courseHours,majorId")] Cours cours)
+        public ActionResult Create([Bind(Include = "courseId,courseName,courseHours,majorId,doctorId")] Cours cours)
         {
             if (ModelState.IsValid)
             {

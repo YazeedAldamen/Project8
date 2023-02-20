@@ -188,6 +188,7 @@
     <Compile Include="Controllers\CollegeController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DocSalaryController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\FacilitiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MajorsController.cs" />
@@ -559,11 +560,6 @@
     <Content Include="Views\Majors\Details.cshtml" />
     <Content Include="Views\Majors\Edit.cshtml" />
     <Content Include="Views\Majors\Index.cshtml" />
-    <Content Include="Views\Cours\Create.cshtml" />
-    <Content Include="Views\Cours\Delete.cshtml" />
-    <Content Include="Views\Cours\Details.cshtml" />
-    <Content Include="Views\Cours\Edit.cshtml" />
-    <Content Include="Views\Cours\Index.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Courses\Delete.cshtml" />
     <Content Include="Views\Courses\Details.cshtml" />
@@ -1208,6 +1204,11 @@
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Students\Accepted.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,7 +11,8 @@ namespace universityERP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Student
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,15 +21,22 @@ namespace universityERP.Models
             this.Payments = new HashSet<Payment>();
             this.studentCourses = new HashSet<studentCours>();
         }
-    
+
         public int studentId { get; set; }
+        [Required]
         public string firstName { get; set; }
+        [Required]
         public string lastName { get; set; }
+        [Required]
         public string image { get; set; }
         public Nullable<int> majorId { get; set; }
         public Nullable<bool> isAccepted { get; set; }
+        [Required]
+        [Range(65,100)]
         public Nullable<decimal> tawjihiAvg { get; set; }
+        
         public string userEmail { get; set; }
+        
         public Nullable<int> wallet { get; set; }
     
         public virtual Major Major { get; set; }

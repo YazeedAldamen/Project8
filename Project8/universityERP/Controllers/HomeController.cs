@@ -10,7 +10,7 @@ namespace universityERP.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return Redirect("~/Home.html");
         }
 
         public ActionResult About()

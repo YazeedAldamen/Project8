@@ -11,11 +11,13 @@ namespace universityERP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Payment
     {
         public int paymentId { get; set; }
         public Nullable<int> studentId { get; set; }
+        [Required]
         public Nullable<int> payment1 { get; set; }
         public Nullable<int> totalFees { get; set; }
     

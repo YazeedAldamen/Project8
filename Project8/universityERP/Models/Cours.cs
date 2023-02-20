@@ -11,6 +11,8 @@ namespace universityERP.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
     using System.Web.Http;
 
     public partial class Cours
@@ -22,7 +24,10 @@ namespace universityERP.Models
         }
     
         public int courseId { get; set; }
+        [Required]
         public string courseName { get; set; }
+        [Required]
+        [DisplayName("Course Hours")]
         public Nullable<int> courseHours { get; set; }
         public Nullable<int> majorId { get; set; }
         public Nullable<int> doctorId { get; set; }

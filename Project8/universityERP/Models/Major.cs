@@ -11,7 +11,8 @@ namespace universityERP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Major
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,17 @@ namespace universityERP.Models
             this.Doctors = new HashSet<Doctor>();
             this.Students = new HashSet<Student>();
         }
-    
+
         public int majorId { get; set; }
+        [Required]
         public string majorName { get; set; }
+        [Required]
         public string majorDescription { get; set; }
+        [Required]
         public string majorImage { get; set; }
+        [Required]
         public Nullable<int> numberOfHours { get; set; }
+        [Required]
         public Nullable<int> majorHourPrice { get; set; }
         public Nullable<int> facilityId { get; set; }
     

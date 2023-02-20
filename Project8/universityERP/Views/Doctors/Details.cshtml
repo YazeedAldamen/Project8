@@ -1,29 +1,30 @@
-﻿@model universityERP.Models.Cours
+﻿@model universityERP.Models.Doctor
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Cours</h4>
+    <h4>Doctor</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.courseName)
+            @Html.DisplayNameFor(model => model.doctorName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.courseName)
+            @Html.DisplayFor(model => model.doctorName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.courseHours)
+            @Html.DisplayNameFor(model => model.doctorSalary)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.courseHours)
+            @Html.DisplayFor(model => model.doctorSalary)
         </dd>
 
         <dt>
@@ -37,6 +38,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.courseId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.doctorId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

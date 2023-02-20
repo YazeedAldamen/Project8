@@ -11,7 +11,8 @@ namespace universityERP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Facility
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,11 @@ namespace universityERP.Models
         }
     
         public int facilityId { get; set; }
+        [Required]
         public string facilityName { get; set; }
+        [Required]
         public string facilityDescription { get; set; }
+        [Required]
         public string facilityImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

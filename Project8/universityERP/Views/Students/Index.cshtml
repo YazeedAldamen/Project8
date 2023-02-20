@@ -55,6 +55,9 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    if( item.userEmail == "admin@gmail.com" || item.userEmail == "razan@gmail.com"){
+                                        continue;
+                                    }
                                     <tr>
 
 

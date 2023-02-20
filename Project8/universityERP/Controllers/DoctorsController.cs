@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -11,134 +10,112 @@ using universityERP.Models;
 
 namespace universityERP.Controllers
 {
-
-    [Authorize(Roles = "Admin")]
-    public class FacilitiesController : Controller
+    public class DoctorsController : Controller
     {
         private universityERPEntities db = new universityERPEntities();
 
-        // GET: Facilities
+        // GET: Doctors
         public ActionResult Index()
         {
-            return View(db.Facilities.ToList());
+            var doctors = db.Doctors.Include(d => d.Major);
+            return View(doctors.ToList());
         }
 
-        // GET: Facilities/Details/5
+        // GET: Doctors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Facility facility = db.Facilities.Find(id);
-            if (facility == null)
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(facility);
+            return View(doctor);
         }
 
-        // GET: Facilities/Create
+        // GET: Doctors/Create
         public ActionResult Create()
         {
+            ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName");
             return View();
         }
 
-        // POST: Facilities/Create
+        // POST: Doctors/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "facilityId,facilityName,facilityDescription,facilityImage")] Facility facility, HttpPostedFileBase facilityImage)
+        public ActionResult Create([Bind(Include = "doctorId,doctorName,doctorSalary,majorId")] Doctor doctor)
         {
-
-
             if (ModelState.IsValid)
             {
-                string path = "../images/" + facilityImage.FileName;
-                facilityImage.SaveAs(Server.MapPath(path));
-                facility.facilityImage = facilityImage.FileName;
-
-                db.Facilities.Add(facility);
+                db.Doctors.Add(doctor);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(facility);
+            ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", doctor.majorId);
+            return View(doctor);
         }
 
-        // GET: Facilities/Edit/5
+        // GET: Doctors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Facility facility = db.Facilities.Find(id);
-            if (facility == null)
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(facility);
+            ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", doctor.majorId);
+            return View(doctor);
         }
 
-        // POST: Facilities/Edit/5
+        // POST: Doctors/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int? id, [Bind(Include = "facilityId,facilityName,facilityDescription,facilityImage")] Facility facility, HttpPostedFileBase facilityImage)
+        public ActionResult Edit([Bind(Include = "doctorId,doctorName,doctorSalary,majorId")] Doctor doctor)
         {
-
             if (ModelState.IsValid)
             {
-                var existingModel = db.Facilities.AsNoTracking().FirstOrDefault(x => x.facilityId == id);
-
-
-                if (facilityImage != null)
-                {
-
-                    string pathpic = Path.GetFileName(facilityImage.FileName);
-                    facilityImage.SaveAs(Path.Combine(Server.MapPath("~/images/"), facilityImage.FileName));
-                    facility.facilityImage = pathpic;
-
-                }
-                else
-                {
-                    facility.facilityImage = existingModel.facilityImage;
-                }
-
-
-                db.Entry(facility).State = EntityState.Modified;
+                db.Entry(doctor).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(facility);
+            ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", doctor.majorId);
+            return View(doctor);
         }
 
-
-        // GET: Facilities/Delete/5
+        // GET: Doctors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Facility facility = db.Facilities.Find(id);
-            if (facility == null)
+            Doctor doctor = db.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(facility);
+            return View(doctor);
         }
 
-        // POST: Facilities/Delete/5
+        // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Facility facility = db.Facilities.Find(id);
-            db.Facilities.Remove(facility);
+            Doctor doctor = db.Doctors.Find(id);
+            db.Doctors.Remove(doctor);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

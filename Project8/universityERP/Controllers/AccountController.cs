@@ -76,9 +76,7 @@ namespace universityERP.Controllers
             Student student = new Student();
             
             var accept = db.Students.Where(m => m.userEmail == model.Email).Select(e => e.isAccepted).FirstOrDefault();
-            if (accept == true)
-            {
-                
+           
                 if (!ModelState.IsValid)
                 {
                     return View(model);
@@ -99,10 +97,17 @@ namespace universityERP.Controllers
                         {
                             return RedirectToAction("Index", "PaymentsStatistics");
                         }
-                        else if (roleId.RoleId == 3.ToString()){
+                        else if (roleId.RoleId == 3.ToString())
+                    {
+                        if (accept == true)
+                        {
                             return RedirectToAction("ProfileDetails", "Students");
                         }
-                        return Redirect("~/Home.html");
+                        else{
+                            return View(model);
+                        }
+                    }
+                    return Redirect("~/Home.html");
                     case SignInStatus.LockedOut:
                         return View("Lockout");
                     case SignInStatus.RequiresVerification:
@@ -112,8 +117,6 @@ namespace universityERP.Controllers
                         ModelState.AddModelError("", "Invalid login attempt.");
                         return View(model);
                 }
-            }
-                return View(model);
             
         }
 
