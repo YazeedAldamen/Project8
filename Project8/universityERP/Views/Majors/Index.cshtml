@@ -14,7 +14,7 @@
             <div class="card mb-4">
                 <div class="card-header pb-0">
                     <h6>
-                        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-success" })
+                        @Html.ActionLink("Create New", "Create", "", new { @class = "btn btn-info" })
                     </h6>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -51,9 +51,9 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td style="max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
 
-                                            <p class="text-s font-weight-bold mb-0">@Html.DisplayFor(modelItem => item.majorDescription)</p>
+                                            @Html.DisplayFor(modelItem => item.majorDescription)
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <span class="badge badge-sm bg-gradient-secondary"> @Html.DisplayFor(modelItem => item.numberOfHours)</span>

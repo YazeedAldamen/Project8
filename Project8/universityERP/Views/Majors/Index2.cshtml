@@ -24,7 +24,7 @@
                                         </div>
                                         <div class="course_body">
                                             <h3 class="course_title">
-                                                <a href="course.html">@item.majorName</a>
+                                                <a href="@Url.Action("Register", "Account", new { majorId = item.majorId })">@item.majorName</a>
                                             </h3>
 
                                             <div class="course_text">

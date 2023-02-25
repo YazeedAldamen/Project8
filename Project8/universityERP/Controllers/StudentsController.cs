@@ -43,7 +43,7 @@ namespace universityERP.Controllers
 
             var student = db.Students.Where(x => x.isAccepted == false).ToList();
 
-            return View(student);
+            return View(students);
         }
 
             [Authorize(Roles = "Admin")]

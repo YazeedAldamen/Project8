@@ -26,7 +26,6 @@ namespace universityERP.Models
         public string facilityName { get; set; }
         [Required]
         public string facilityDescription { get; set; }
-        [Required]
         public string facilityImage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

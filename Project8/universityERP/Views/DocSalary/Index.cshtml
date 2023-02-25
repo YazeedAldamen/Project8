@@ -7,38 +7,99 @@
 
 <h2>Edit Doctors Salary</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Doctor Name
-        </th>
-        <th>
-            Major Name
-        </th>
-        <th>
-            Doctor Salary
-        </th>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+             
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
 
-        <th></th>
-    </tr>
+                            <thead>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.doctorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Major.majorName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.doctorSalary)
-            </td>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Doctor Name
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.doctorId })
-            </td>
-        </tr>
-    }
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Major Name
 
-</table>
+                                    </th>
+
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Doctor Salary
+                                    </th>
+                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm" style="text-transform:capitalize">
+                                                        @Html.DisplayFor(modelItem => item.doctorName)
+
+
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                        @Html.DisplayFor(modelItem => item.Major.majorName)
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                        @Html.DisplayFor(modelItem => item.doctorSalary)
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">
+                                                            @Html.ActionLink("Edit", "Edit", new { id = item.doctorId })
+
+
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                      
+
+
+
+                                        <td></td>
+                                    </tr>
+
+                                }
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

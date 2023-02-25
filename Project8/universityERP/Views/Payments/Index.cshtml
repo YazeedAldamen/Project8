@@ -7,55 +7,117 @@
 
 <h2>Done Payment</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Student Name
-        </th>
-        <th>
-            Total Fees
-        </th>
-        <th>
-            Paid
-        </th>
-        <th>
-            Student Wallet
-        </th>
+
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+               
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+
+                            <thead>
+
+                                <tr>
+                                    <th></th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Student Name
+
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Total Fees
+
+                                    </th>
+
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Paid
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Student Wallet
+
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm" style="text-transform:capitalize">
+                                                        @Html.DisplayFor(modelItem => item.Student.firstName)  @Html.DisplayFor(modelItem => item.Student.lastName)
+
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm" >
+                                                        @Html.DisplayFor(modelItem => item.totalFees) JD
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                        @Html.DisplayFor(modelItem => item.payment1) JD
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                        @if (item.Student.wallet == null)
+                                        {
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm"> 0.00 JD</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">
+                                                            @Html.DisplayFor(modelItem => item.Student.wallet)JD
+
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        }
 
 
 
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
+                                       
+                                        <td></td>
+                                    </tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Student.firstName)  @Html.DisplayFor(modelItem => item.Student.lastName)
+                                }
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.totalFees) JD
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.payment1) JD
-            </td>
-            @if (item.Student.wallet == null)
-            {
-                <td> 0.00 JD</td>
-
-            }
-            else
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item.Student.wallet) JD
-                </td>
-            }
-
-
-        </tr>
-    }
-
-
-
-</table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

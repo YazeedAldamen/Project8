@@ -36,8 +36,10 @@
                                         </div>
                                         <label>Major Image</label>
                                         <div class="mb-3">
-                                            <input type="file" name="majorImage" value="" accept="image/*"
-class="form-control"/>
+                                            <input type="file" name="majorImage" value="@Model.majorImage" accept="image/*"
+                                                   class="form-control" />
+                                            @Html.ValidationMessageFor(model => model.majorImage, "", new { @class = "text-danger" })
+
                                         </div>
                                         <label>Hours</label>
                                         <div class="mb-3">
@@ -51,7 +53,7 @@ class="form-control"/>
                                         </div>
                                         <label>Facility</label>
                                         <div class="mb-3">
-                                            @Html.DropDownList("facilityId", null, htmlAttributes: new { @class = "form-control" })
+                                            @Html.DropDownList("facilityId", (IEnumerable<SelectListItem>)ViewBag.facilityId, htmlAttributes: new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.facilityId, "", new { @class = "text-danger" })
                                         </div>
 

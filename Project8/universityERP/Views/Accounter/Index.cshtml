@@ -7,43 +7,85 @@
 
 <h2>Major Hourly Price </h2>
 
-<table class="table">
-    <tr>
-        <th>
-            Facility Name
-        </th>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+               
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
 
-        <th>
-            Major Name
-        </th>
+                            <thead>
 
-        <th>
-            Major Hour Price
-        </th>
+                                <tr>
+                                    <th></th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Facility Name
+                                    </th>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Major Name
+                                    </th>
 
-        <th></th>
-    </tr>
+                                    <th class="text-uppercase text-secondary text-s font-weight opacity-10">
+                                        Major Hour Price
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Facility.facilityName)
-            </td>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                        @Html.DisplayFor(modelItem => item.Facility.facilityName)
+                                                    </h6>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                        @Html.DisplayFor(modelItem => item.majorName)
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                        @Html.DisplayFor(modelItem => item.majorHourPrice)
+                                                    </h6>
+                                                </div>
+                                            </div>
+                                        </td>
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.majorName)
-            </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.majorHourPrice)
-            </td>
+                                        <td class="align-middle text-center btn btn-secondary">
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.majorId})
+                                        </td>
+                                        <td></td>
+                                    </tr>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.majorId })
-            </td>
-        </tr>
-    }
+                                }
 
-</table>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

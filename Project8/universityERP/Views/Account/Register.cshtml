@@ -5,7 +5,12 @@
 
     Layout = "~/Views/Shared/_LayoutSign.cshtml";
 }
+@{
+    universityERP.Models.universityERPEntities db = new universityERP.Models.universityERPEntities();
+    int majorId = int.Parse(Request.QueryString["majorId"]);
+    string major = db.Majors.Where(x => x.majorId == majorId).FirstOrDefault().majorName;
 
+}
 
 
 <main class="main-content mt-0">
@@ -18,9 +23,9 @@
 
                             <div class="card-header pb-0 text-left bg-transparent">
                                 <h3 class="font-weight-bolder text-info text-gradient">
-                                    Welcome back
+                                    Enroll Now
                                 </h3>
-                                <p class="mb-0">Enter your email and password to sign in</p>
+                                <p class="mb-0">You're about to enroll in @major </p>
                             </div>
                             <div class="card-body">
                                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
@@ -100,7 +105,7 @@
                     </div>
                 </div>
             </div>
-
+            </div>
     </section>
 </main>
 <script>

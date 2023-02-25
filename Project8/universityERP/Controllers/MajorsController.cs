@@ -105,12 +105,13 @@ namespace universityERP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int? id, [Bind(Include = "majorId,majorName,majorDescription,majorImage,numberOfHours,majorHourPrice,facilityId")] Major major, HttpPostedFileBase majorImage)
         {
+            var existingModel = db.Majors.AsNoTracking().FirstOrDefault(x => x.majorId == id);
 
+
+          
 
             if (ModelState.IsValid)
             {
-                var existingModel = db.Majors.AsNoTracking().FirstOrDefault(x => x.majorId == id);
-
 
                 if (majorImage != null)
                 {
@@ -126,13 +127,14 @@ namespace universityERP.Controllers
                     major.majorImage = existingModel.majorImage;
                 }
 
-
                 db.Entry(major).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
 
             }
             ViewBag.majorId = new SelectList(db.Majors, "majorId", "majorName", major.majorId);
+
             return View(major);
 
 

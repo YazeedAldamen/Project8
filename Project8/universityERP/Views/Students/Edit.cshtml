@@ -26,6 +26,7 @@
                                 @Html.AntiForgeryToken()
                                 <div class="card-body">
                                     <form role="form">
+                                        @Html.HiddenFor(model => model.image)
 
 
                                         <label>First Name</label>
@@ -50,7 +51,6 @@
 
 
 
-
                                         <label>Tawjihi GPA</label>
                                         <div class="mb-3">
                                             @Html.DisplayFor(model => model.tawjihiAvg, new { htmlAttributes = new { @class = "form-control" } })
@@ -59,9 +59,9 @@
                                         </div>
 
 
+                                        <label name="userEmail" id="userEmaillbl">Email </label>
 
                                         <div class="mb-3">
-                                            <label name="userEmail" id="userEmaillbl">Email </label>
                                             @Html.DisplayFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.HiddenFor(model => model.userEmail)
                                         </div>
@@ -70,22 +70,20 @@
 
                                         <label>Status</label>
 
-                                        <div class="mb-3" >
+                                        <div class="mb-3">
                                             @*<div class="checkbox">
-                                                    @Html.EditorFor(model => model.isAccepted, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.isAccepted, new { htmlAttributes = new { @class = "form-control" } })
 
-                                                </div>*@
+            </div>*@
 
 
                                             <select name="isAccepted" class="form-control">
                                                 <option value="false">
                                                     Select
                                                 </option>
-                                                <option value="false">
-                                                    In Progress
-                                                </option>
+                                                
                                                 <option value="true">
-                                                    Accepte
+                                                    Accept
                                                 </option>
 
                                             </select>

@@ -28,7 +28,6 @@ namespace universityERP.Models
         public string majorName { get; set; }
         [Required]
         public string majorDescription { get; set; }
-        [Required]
         public string majorImage { get; set; }
         [Required]
         public Nullable<int> numberOfHours { get; set; }
