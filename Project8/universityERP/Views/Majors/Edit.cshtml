@@ -53,7 +53,7 @@
                                         </div>
                                         <label>Facility</label>
                                         <div class="mb-3">
-                                            @Html.DropDownList("facilityId", (IEnumerable<SelectListItem>)ViewBag.facilityId, htmlAttributes: new { @class = "form-control" })
+                                            @Html.DropDownList("facilityId",null , htmlAttributes: new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.facilityId, "", new { @class = "text-danger" })
                                         </div>
 

@@ -34,7 +34,7 @@ namespace universityERP.Models
         [Required]
         [Range(65,100)]
         public Nullable<decimal> tawjihiAvg { get; set; }
-        
+        [EmailAddress]
         public string userEmail { get; set; }
         
         public Nullable<int> wallet { get; set; }

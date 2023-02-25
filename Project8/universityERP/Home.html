@@ -1,7 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Unicat</title>
+    <title>
+        ECU
+    </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Unicat project">
@@ -142,7 +144,7 @@
         <div class="courses" id="yes">
             <div class="section_background parallax-window" data-parallax="scroll" data-image-src="images/courses_background.jpg" data-speed="0.8"></div>
             <div class="container">
-                <div class="row" >
+                <div class="row">
                     <div class="col">
                         <div class="section_title_container text-center">
                             <h2 class="section_title">Our Facilites</h2>
@@ -160,10 +162,6 @@
             </div>
         </div>
         <!-- Features -->
-
-
-
-
         <!-- Counter -->
         <!-- Footer -->
         <footer class="footer">
@@ -258,15 +256,16 @@
                             <div class="cr_text">
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved 
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved
                             </div>
-                        
+
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
+    
 
     <script src="Templates/unicat-master/js/jquery-3.2.1.min.js"></script>
     <script src="Templates/unicat-master/styles/bootstrap4/popper.js"></script>
@@ -302,20 +301,20 @@
 
 
                     `
-                        
+
 <div class="col-lg-4 course_col" style="height:500px">
-                            <a class="nav-link" title="Enroll Here" href="https://localhost:44367/Majors/Index2/${data[i].facilityId}">
-                            <div class="course">
-                                <div class="course_image"><img style="height:200px; width:100%"  src="images/Facilites/${data[i].facilityImage}" alt=""></div>
-                                <div class="course_body" style="height:200px;width:100%">
-                                    <h3 class="course_title">${data[i].facilityName}</h3>
-                                    <div class="course_text" style="overflow: hidden">
-                                        <p>${data[i].facilityDescription}</p>
+                                <a class="nav-link" title="Enroll Here" href="https://localhost:44367/Majors/Index2/${data[i].facilityId}">
+                                <div class="course">
+                                    <div class="course_image"><img style="height:200px; width:100%"  src="images/Facilites/${data[i].facilityImage}" alt=""></div>
+                                    <div class="course_body" style="height:200px;width:100%">
+                                        <h3 class="course_title">${data[i].facilityName}</h3>
+                                        <div class="course_text" style="overflow: hidden">
+                                            <p>${data[i].facilityDescription}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            </a>
-                        </div>`
+                                </a>
+                            </div>`
 
                     ;
 
@@ -324,11 +323,11 @@
         }
         read();
 
-                    //fetch('https://localhost:44352/api/Facilities')
-                    //    .then(response => response.json())
-                    //    .then(data => {
-                    //        console.log(data);
-                    //        data.forEach(one => document.getElementById("div1").innerHTML += `<a href="${}"><h2>${one.Facility1}</h2></a>`)
-                    //    });</script>
+                        //fetch('https://localhost:44352/api/Facilities')
+                        //    .then(response => response.json())
+                        //    .then(data => {
+                        //        console.log(data);
+                        //        data.forEach(one => document.getElementById("div1").innerHTML += `<a href="${}"><h2>${one.Facility1}</h2></a>`)
+                        //    });</script>
 </body>
 </html>

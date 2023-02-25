@@ -104,6 +104,7 @@ namespace universityERP.Controllers
                             return RedirectToAction("ProfileDetails", "Students");
                         }
                         else{
+                            Session["notAccepted"] = "false";
                             return View(model);
                         }
                     }
@@ -253,7 +254,9 @@ namespace universityERP.Controllers
                         smtp.Host = "smtp.gmail.com";
                         smtp.Credentials = new System.Net.NetworkCredential("hopeorganization23@gmail.com", "mbuyaativxrfntjx\r\n");
                         smtp.Send(mail);
+                        
                         return Redirect("~/Home.html");
+
                     }
 
                     return Redirect("~/Home.html");
