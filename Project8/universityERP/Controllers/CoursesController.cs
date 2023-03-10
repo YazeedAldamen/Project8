@@ -26,8 +26,6 @@ namespace universityERP.Controllers
 
             return View(courses);
 
-
-
         }
         // GET: Courses
         //public ActionResult Index()
@@ -44,6 +42,7 @@ namespace universityERP.Controllers
             var courses = db.Courses.Include(c => c.Major).Where(x => x.majorId == id);
             return View(courses.ToList());
         }
+
         // GET: Courses/Details/5
         [Authorize(Roles = "Admin")]
 
@@ -194,6 +193,7 @@ namespace universityERP.Controllers
                 courseId = id,
                 studentId = Sid,
             };
+            
 
             if (ModelState.IsValid)
             {

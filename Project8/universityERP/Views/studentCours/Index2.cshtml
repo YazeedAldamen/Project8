@@ -78,34 +78,34 @@
     </div>
 </div>
 @{
-    try
+    //try
+    //{
+
+    var sum = Model.Sum(x => x.Cours.courseHours).ToString();
+    int summ = Convert.ToInt32(sum);
+
+
+    var price = Model.Select(x => x.Student.Major.majorHourPrice).FirstOrDefault();
+    int pricee = Convert.ToInt32(price);
+    int multi = (summ * pricee) + 50;
+
+    Session["totalFees"] = multi;
+
+
+    int wallet = (int)Model.Select(x => x.Student.wallet).FirstOrDefault();
+    int rest = multi - wallet;
+    if (rest < 0)
     {
-
-        var sum = Model.Sum(x => x.Cours.courseHours).ToString();
-        int summ = Convert.ToInt32(sum);
-
-
-        var price = Model.Select(x => x.Student.Major.majorHourPrice).FirstOrDefault();
-        int pricee = Convert.ToInt32(price);
-        int multi = (summ * pricee) + 50;
-
-        Session["totalFees"] = multi;
-
-
-        int wallet = (int)Model.Select(x => x.Student.wallet).FirstOrDefault();
-        int rest = multi - wallet;
-        if (rest < 0)
-        {
-            rest = 0;
-        }
-        var ispaid = Model.Select(x => x.isPaid).FirstOrDefault();
+        rest = 0;
+    }
+    var ispaid = Model.Select(x => x.isPaid).FirstOrDefault();
 
 
 
 
 
-        if (ispaid == null)
-        {
+    if (ispaid == null)
+    {
             <div id="con2" class="container">
                 <div class="card mb-4 container">
                     <div class="card-header pb-0">
@@ -266,12 +266,12 @@
         </div>
         <br />
         <br />
-    }
-    catch (Exception)
-    {
+    @*}*@
+        //catch (Exception)
+        //{
 
+    //    }
     }
-}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

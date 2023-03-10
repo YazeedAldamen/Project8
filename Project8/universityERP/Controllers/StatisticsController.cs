@@ -24,7 +24,7 @@ namespace universityERP.Controllers
         }
         public ActionResult CreateBar()
         {
-
+            
             int eng = db.Students.Count(item => item.Major.facilityId == 1);
             int med = db.Students.Count(item => item.Major.facilityId == 2);
             int Sci = db.Students.Count(item => item.Major.facilityId == 3);
@@ -32,11 +32,13 @@ namespace universityERP.Controllers
             int art = db.Students.Count(item => item.Major.facilityId == 5);
             int bus = db.Students.Count(item => item.Major.facilityId == 6);
 
+
             var chart = new Chart(width: 500, height: 400)
             .AddSeries(chartType: "bar",
         xValue: new[] { "Engineering", "Medicine", "Science", "IT", "Art", "Business" },
         yValues: new[] { eng, med, Sci, it, art, bus })
                             .GetBytes("png");
+
             return File(chart, "image/bytes");
         }
 

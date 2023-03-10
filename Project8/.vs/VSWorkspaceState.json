@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\universityERP",
-    "\\universityERP\\Controllers"
+    "\\universityERP\\Controllers",
+    "\\universityERP\\Views",
+    "\\universityERP\\Views\\Shared"
   ],
-  "SelectedNode": "\\universityERP\\Controllers\\StudentsController.cs",
+  "SelectedNode": "\\universityERP\\Views\\Shared\\_Accounter.cshtml",
   "PreviewInSolutionExplorer": false
 }
